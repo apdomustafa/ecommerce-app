@@ -1,6 +1,7 @@
-import 'package:ecommerce_app/utils/thems/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+
+import '../thems/text_style.dart';
 
 class CustomHeader extends StatelessWidget {
   const CustomHeader(
@@ -23,6 +24,7 @@ class CustomHeader extends StatelessWidget {
         Text(
           secondText,
           style: AppTextStyle.styleNormal12(),
+          textAlign: TextAlign.center,
         ),
         thirdText == null
             ? const SizedBox()

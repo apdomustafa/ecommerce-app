@@ -1,13 +1,8 @@
-import 'package:ecommerce_app/utils/colors/app_colors.dart';
-import 'package:ecommerce_app/utils/const/app_texts.dart';
-import 'package:ecommerce_app/utils/thems/text_style.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+part of 'package:ecommerce_app/features/auth/view/sign_in_view.dart';
 
 class AuthDivider extends StatelessWidget {
-  const AuthDivider({super.key});
+  const AuthDivider({super.key, required this.text});
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +18,7 @@ class AuthDivider extends StatelessWidget {
             ),
           ),
           Text(
-            AppTexts.signInWith,
+            text,
             style: AppTextStyle.styleNormal12(),
           ),
           Expanded(

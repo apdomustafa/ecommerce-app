@@ -1,24 +1,33 @@
-import 'package:ecommerce_app/utils/const/app_texts.dart';
-import 'package:ecommerce_app/utils/thems/text_style.dart';
-import 'package:flutter/material.dart';
+part of 'package:ecommerce_app/features/auth/view/sign_up_view.dart';
 
-// sign up i the user doesn't have an account
-class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+class _SignUp extends StatefulWidget {
+  const _SignUp();
+
+  @override
+  State<_SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<_SignUp> {
+  UserInfoModel? _userInfo;
+  AuthGlobalKeys? _globalKeys;
 
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(children: [
-        TextSpan(
-          text: AppTexts.dontHaveAccount,
-          style: AppTextStyle.styleNormal16(),
-        ),
-        TextSpan(
-          text: AppTexts.signUp,
-          style: AppTextStyle.styleBold16(),
-        ),
-      ]),
-    );
+    _userInfo = Provider.of<UserInfoModel>(context);
+    _globalKeys = Provider.of<AuthGlobalKeys>(context);
+    return CustomButton.primary(() async {
+      if (userIsValidate()) {
+        Navigator.pop(context);
+      }
+    }, AppTexts.signUp);
+  }
+
+  bool userIsValidate() {
+    if (_globalKeys!.signUpNameKey.currentState!.validate() &&
+        _globalKeys!.signUpEmailKey.currentState!.validate() &&
+        _globalKeys!.signUpPassKey.currentState!.validate()) {
+      return true;
+    }
+    return false;
   }
 }

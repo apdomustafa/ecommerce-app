@@ -1,6 +1,7 @@
-import 'package:ecommerce_app/utils/colors/app_colors.dart';
-import 'package:ecommerce_app/utils/thems/text_style.dart';
 import 'package:flutter/material.dart';
+
+import '../colors/app_colors.dart';
+import '../thems/text_style.dart';
 
 class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -26,7 +27,7 @@ class CustomButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: onPressed,
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 12),
             backgroundColor: backgroundColor,

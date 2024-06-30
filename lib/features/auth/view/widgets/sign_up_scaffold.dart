@@ -1,19 +1,22 @@
-part of 'package:ecommerce_app/features/auth/view/sign_in_view.dart';
+part of 'package:ecommerce_app/features/auth/view/sign_up_view.dart';
 
-class _SignInScaffold extends StatelessWidget {
-  const _SignInScaffold(
+class _SignUpScaffold extends StatelessWidget {
+  const _SignUpScaffold(
       {required this.header,
       required this.userInfoSection,
-      required this.signInButton,
+      required this.termsAndCondition,
+      required this.signUpButton,
       required this.authDivider,
       required this.socialSignInMethods,
-      required this.goToSignUpView});
+      required this.goToSignInView});
+
   final CustomHeader header;
-  final _SignInUserInfoSection userInfoSection;
-  final _SignIn signInButton;
+  final _SignUpUserInfoSection userInfoSection;
+  final _TermsAndCondition termsAndCondition;
+  final _SignUp signUpButton;
   final AuthDivider authDivider;
   final SocialSignInMethods socialSignInMethods;
-  final _GoToSignUpView goToSignUpView;
+  final _GoToSignInView goToSignInView;
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +33,16 @@ class _SignInScaffold extends StatelessWidget {
                   header,
                   Gap(52.h),
                   userInfoSection,
+                  Gap(4.h),
+                  termsAndCondition,
                   Gap(42.h),
-                  signInButton,
+                  signUpButton,
                   Gap(42.h),
                   authDivider,
                   Gap(42.h),
                   socialSignInMethods,
                   Gap(42.h),
-                  goToSignUpView,
+                  goToSignInView,
                 ],
               ),
             ),

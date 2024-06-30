@@ -1,5 +1,5 @@
-import 'package:ecommerce_app/utils/colors/app_colors.dart';
-import 'package:ecommerce_app/utils/const/app_texts.dart';
+import 'package:ecommerce_app/core/utils/colors/app_colors.dart';
+import 'package:ecommerce_app/core/utils/const/app_texts.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatelessWidget {

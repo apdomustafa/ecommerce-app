@@ -1,9 +1,7 @@
-import 'package:ecommerce_app/utils/colors/app_colors.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+part of 'package:ecommerce_app/features/auth/view/widgets/social_sign_methods.dart';
 
-class SocialButton extends StatelessWidget {
-  const SocialButton({super.key, required this.image});
+class _SocialButton extends StatelessWidget {
+  const _SocialButton({required this.image});
   final String image;
   @override
   Widget build(BuildContext context) {

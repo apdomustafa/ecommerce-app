@@ -1,6 +1,7 @@
-import 'package:ecommerce_app/utils/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../colors/app_colors.dart';
 
 class AppTextStyle {
   static TextStyle styleBold24() {
@@ -19,10 +20,26 @@ class AppTextStyle {
     );
   }
 
+  static TextStyle styleNormal20() {
+    return TextStyle(
+      color: AppColors.titleColor,
+      fontSize: 20.sp,
+      fontWeight: FontWeight.normal,
+    );
+  }
+
   static TextStyle styleBold16() {
-    return const TextStyle(
+    return TextStyle(
         color: AppColors.primaryColor,
-        fontSize: 16,
+        fontSize: 16.sp,
+        fontWeight: FontWeight.bold,
+        decoration: TextDecoration.underline);
+  }
+
+  static TextStyle styleBold20() {
+    return TextStyle(
+        color: AppColors.primaryColor,
+        fontSize: 20.sp,
         fontWeight: FontWeight.bold,
         decoration: TextDecoration.underline);
   }

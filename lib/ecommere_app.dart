@@ -1,7 +1,8 @@
+import 'package:ecommerce_app/core/utils/routes/app_routes.dart';
+import 'package:ecommerce_app/core/utils/thems/light_theme.dart';
 import 'package:ecommerce_app/features/auth/splash_view.dart';
 import 'package:ecommerce_app/features/auth/view/sign_in_view.dart';
-import 'package:ecommerce_app/utils/device_info/device_info.dart';
-import 'package:ecommerce_app/utils/thems/light_theme.dart';
+import 'package:ecommerce_app/features/auth/view/sign_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,9 +11,6 @@ class EcommerceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(DeviceInfo.getDeviceWidth(context).toString());
-    debugPrint(DeviceInfo.getDeviceHeight(context).toString());
-
     return ScreenUtilInit(
       designSize: const Size(423.5, 893),
       minTextAdapt: true,
@@ -20,6 +18,7 @@ class EcommerceApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: AppThemes.lightTheme,
+        onGenerateRoute: AppRoutes.generateRoutes,
         home: const Scaffold(
           body: SignInView(),
         ),
