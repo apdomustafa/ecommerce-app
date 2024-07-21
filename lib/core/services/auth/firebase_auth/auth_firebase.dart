@@ -4,7 +4,7 @@ import 'package:ecommerce_app/core/services/auth/auth_methods/social_methods_sig
 import 'package:ecommerce_app/core/utils/failure/failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthFirebase extends AuthService {
+class AuthWithFirebase extends AuthService {
   @override
   Future<Either<Failure, UserCredential>> signUpWithEmailAndPass(
       String email, String pass) async {
@@ -17,7 +17,7 @@ class AuthFirebase extends AuthService {
       );
       User? user = userCredential.user;
       if (user != null) {
-        user.sendEmailVerification();
+        // user.sendEmailVerification();
         return right(userCredential);
       } else {
         return left(Failure(errorMessage: 'user not found'));
@@ -41,16 +41,24 @@ class AuthFirebase extends AuthService {
     try {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: pass);
-      User? user = credential.user;
-      if (user != null && user.emailVerified) {
-        return right(credential);
-      } else {
-        return left(Failure(errorMessage: 'verfiy your email first'));
-      }
+      return right(credential);
     } on FirebaseAuthException catch (e) {
       return left(Failure.firebaseFailure(e.code));
     } catch (e) {
       return left(Failure(errorMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> resetPassword(String email) async {
+    // In Firebase, you would typically send a password reset email.
+    // However, for a custom implementation, you might need to manage this yourself
+    // For this example, we're assuming you have a backend service to handle this part
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      return right(null);
+    } on Exception catch (e) {
+      return left(Failure(errorMessage: 'an error occured : $e'));
     }
   }
 }

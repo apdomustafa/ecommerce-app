@@ -12,4 +12,6 @@ abstract class AuthService {
 
   Future<Either<Failure, UserCredential>> signUpWithEmailAndPass(
       String email, String pass);
+
+  Future<Either<Failure, void>> resetPassword(String email);
 }

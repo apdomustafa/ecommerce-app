@@ -4,15 +4,15 @@ class UserInfoModel with ChangeNotifier {
   String? _name, _email, _pass;
 
   String get getName {
-    return _name!;
+    return _name!.trim();
   }
 
   String get getEmail {
-    return _email!;
+    return _email!.trim();
   }
 
   String get getPass {
-    return _pass!;
+    return _pass!.trim();
   }
 
   set setName(String name) {

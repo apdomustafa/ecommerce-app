@@ -26,7 +26,6 @@ class CustomHeader extends StatelessWidget {
           Text(
             secondText,
             style: AppTextStyle.generalRegular16(),
-            textAlign: TextAlign.center,
           ),
         ],
       ),

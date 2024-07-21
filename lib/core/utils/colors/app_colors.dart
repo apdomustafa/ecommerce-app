@@ -11,6 +11,7 @@ class AppColors {
   static const Color headLineColor = Colors.black;
   static const Color titleColor = Colors.black;
   static const Color errorColor = Colors.red;
+  static const Color successColor = Colors.green;
   static const Color hintColor = Color.fromARGB(255, 204, 203, 203);
   static const Color blueColor = Color(0xFF1877F2);
   static const Color buttonTextColor = Colors.white;
