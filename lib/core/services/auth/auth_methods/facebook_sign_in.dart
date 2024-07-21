@@ -13,7 +13,11 @@ class FacebookSignIn extends SocialMethodsSignIn {
       final LoginResult loginResult = await FacebookAuth.instance.login();
       // Create a credential from the access token
       final OAuthCredential facebookAuthCredential =
+<<<<<<< HEAD
           FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+=======
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+>>>>>>> a41a0ff52e267cdebcb8cdd6f9da82c0e6485a13
       // Once signed in, return the UserCredential
       userCredential = await FirebaseAuth.instance
           .signInWithCredential(facebookAuthCredential);

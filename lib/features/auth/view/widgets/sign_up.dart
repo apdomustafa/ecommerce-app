@@ -9,19 +9,22 @@ class _SignUp extends StatefulWidget {
 
 class _SignUpState extends State<_SignUp> {
   UserInfoModel? _userInfo;
-  AuthGlobalKeys? _globalKeys;
   AuthUserValidation? _userValidation;
 
   @override
   Widget build(BuildContext context) {
     _userInfo = Provider.of<UserInfoModel>(context);
-    _globalKeys = Provider.of<AuthGlobalKeys>(context);
     _userValidation = Provider.of<AuthUserValidation>(context, listen: true);
     if (_userValidation!.userIsValid) {
-      return CustomButton.primary(onPressed: () {}, text: AppTexts.logIn);
+      return CustomButton.primary(
+          onPressed: () async {
+            BlocProvider.of<AuthBloc>(context).add(AuthSignedUp(
+                email: _userInfo!.getEmail, pass: _userInfo!.getPass));
+          },
+          text: AppTexts.createAccount);
     }
     return CustomButton.secondry(
-      text: AppTexts.logIn,
+      text: AppTexts.createAccount,
     );
   }
 }

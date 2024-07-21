@@ -19,7 +19,8 @@ class _SignInState extends State<_SignIn> {
     if (_userValidation!.userIsValid) {
       return CustomButton.primary(
           onPressed: () async {
-            await signInWithGoogle();
+            BlocProvider.of<AuthBloc>(context).add(AuthSignedIn(
+                email: _userInfo!.getEmail, pass: _userInfo!.getPass));
           },
           text: AppTexts.logIn);
     }
@@ -27,24 +28,4 @@ class _SignInState extends State<_SignIn> {
       text: AppTexts.logIn,
     );
   }
-}
-
-Future<User?> signInWithGoogle() async {
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  final GoogleSignIn googleSignIn = GoogleSignIn();
-  final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-  if (googleUser == null) {
-    // The user canceled the sign-in
-    return null;
-  }
-
-  final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-  final AuthCredential credential = GoogleAuthProvider.credential(
-    accessToken: googleAuth.accessToken,
-    idToken: googleAuth.idToken,
-  );
-
-  final UserCredential userCredential =
-      await auth.signInWithCredential(credential);
-  return userCredential.user;
 }

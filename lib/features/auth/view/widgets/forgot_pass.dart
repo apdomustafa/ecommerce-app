@@ -10,7 +10,9 @@ class _ForgotPasswordSection extends StatelessWidget {
       child: TextCombination(
         firstText: 'Forgot your password? ',
         secondText: 'Reset your passowrd',
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, AppConst.kForgotPasswordView);
+        },
       ),
     );
   }
