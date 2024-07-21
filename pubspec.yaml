@@ -41,10 +41,12 @@ dependencies:
   flutter_native_splash: ^2.4.0
   gap: ^3.0.1
   flutter_screenutil: ^5.9.3
-  firebase_core: ^3.1.1
-  firebase_auth: ^5.1.1
+  firebase_core: ^3.2.0
+  firebase_auth: ^5.1.2
   bloc: ^8.1.4
   provider: ^6.1.2
+  get_it: ^7.7.0
+  google_sign_in: ^6.2.1
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +58,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+  flutter_gen: ^5.6.0
+  build_runner: ^2.4.11
+  flutter_gen_runner: ^5.6.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -88,6 +93,19 @@ flutter:
     - family: splashFont
       fonts:
         - asset: assets/fonts/splash_font.ttf
+
+    - family: general sans font 
+      fonts:
+        - asset: assets/fonts/GeneralSans-Regular.otf 
+
+        
+    - family: sf pro disply font 
+      fonts:
+        - asset: assets/fonts/SFPRODISPLAYREGULAR.OTF   
+
+    - family: sf pro text font 
+      fonts:
+        - asset: assets/fonts/FontsFree-Net-SFProText-Regular.ttf    
         
   #   - family: Trajan Pro
   #     fonts:

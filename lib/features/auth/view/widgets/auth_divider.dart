@@ -19,7 +19,7 @@ class AuthDivider extends StatelessWidget {
           ),
           Text(
             text,
-            style: AppTextStyle.styleNormal12(),
+            style: AppTextStyle.generalRegular12(),
           ),
           Expanded(
             child: Divider(

@@ -4,35 +4,32 @@ import 'package:gap/gap.dart';
 import '../thems/text_style.dart';
 
 class CustomHeader extends StatelessWidget {
-  const CustomHeader(
-      {super.key,
-      required this.firstText,
-      required this.secondText,
-      this.thirdText});
+  const CustomHeader({
+    super.key,
+    required this.firstText,
+    required this.secondText,
+  });
   final String firstText, secondText;
-  final String? thirdText;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          firstText,
-          style: AppTextStyle.styleBold24(),
-        ),
-        thirdText == null ? const Gap(8) : const Gap(4),
-        Text(
-          secondText,
-          style: AppTextStyle.styleNormal12(),
-          textAlign: TextAlign.center,
-        ),
-        thirdText == null
-            ? const SizedBox()
-            : Text(
-                firstText,
-                style: AppTextStyle.styleBold12(),
-              ),
-      ],
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            firstText,
+            style: AppTextStyle.generalSemiBold32(),
+          ),
+          const Gap(8),
+          Text(
+            secondText,
+            style: AppTextStyle.generalRegular16(),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
     );
   }
 }

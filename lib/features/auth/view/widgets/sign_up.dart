@@ -10,24 +10,18 @@ class _SignUp extends StatefulWidget {
 class _SignUpState extends State<_SignUp> {
   UserInfoModel? _userInfo;
   AuthGlobalKeys? _globalKeys;
+  AuthUserValidation? _userValidation;
 
   @override
   Widget build(BuildContext context) {
     _userInfo = Provider.of<UserInfoModel>(context);
     _globalKeys = Provider.of<AuthGlobalKeys>(context);
-    return CustomButton.primary(() async {
-      if (userIsValidate()) {
-        Navigator.pop(context);
-      }
-    }, AppTexts.signUp);
-  }
-
-  bool userIsValidate() {
-    if (_globalKeys!.signUpNameKey.currentState!.validate() &&
-        _globalKeys!.signUpEmailKey.currentState!.validate() &&
-        _globalKeys!.signUpPassKey.currentState!.validate()) {
-      return true;
+    _userValidation = Provider.of<AuthUserValidation>(context, listen: true);
+    if (_userValidation!.userIsValid) {
+      return CustomButton.primary(onPressed: () {}, text: AppTexts.logIn);
     }
-    return false;
+    return CustomButton.secondry(
+      text: AppTexts.logIn,
+    );
   }
 }

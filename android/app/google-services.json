@@ -1,26 +1,37 @@
 {
   "project_info": {
-    "project_number": "698490110406",
-    "project_id": "ecommerce-app-a34cf",
-    "storage_bucket": "ecommerce-app-a34cf.appspot.com"
+    "project_number": "675335972613",
+    "firebase_url": "https://avs-control-default-rtdb.firebaseio.com",
+    "project_id": "avs-control",
+    "storage_bucket": "avs-control.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:698490110406:android:269136d016cd09039572c7",
+        "mobilesdk_app_id": "1:675335972613:android:fe4a95878dd15b0f3ab96c",
         "android_client_info": {
           "package_name": "com.example.ecommerce_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "675335972613-irfoa529hruanuq9dsfu1f9qjge2hm63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyA78s_KQczGUMKFvIuSjbukbFftHB_ANyo"
+          "current_key": "AIzaSyDMhCJw-h37LFRV5yW71uboMyejIZZSkEc"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675335972613-irfoa529hruanuq9dsfu1f9qjge2hm63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

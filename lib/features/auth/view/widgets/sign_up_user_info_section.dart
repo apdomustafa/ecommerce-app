@@ -15,19 +15,27 @@ class _SignUpUserInfoSectionState extends State<_SignUpUserInfoSection> {
   Widget build(BuildContext context) {
     final userInfoModel = Provider.of<UserInfoModel>(context, listen: false);
     final formkeys = Provider.of<AuthGlobalKeys>(context, listen: false);
-
+    final signUpUserValidation =
+        Provider.of<AuthUserValidation>(context, listen: false);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // name section
+
         Text(
           AppTexts.name,
-          style: AppTextStyle.styleNormal16(),
+          style: AppTextStyle.textRegular16(),
         ),
         Gap(4.h),
         CustomTextField.withFocusNode(
           onChange: (name) {
             if (formkeys.signUpNameKey.currentState!.validate()) {
+              signUpUserValidation.nameIsValid = true;
+              signUpUserValidation.signUpUserValidation();
               userInfoModel.setName = name;
+            } else {
+              signUpUserValidation.nameIsValid = false;
+              signUpUserValidation.signUpUserValidation();
             }
           },
           hint: AppTexts.nameHint,
@@ -36,16 +44,24 @@ class _SignUpUserInfoSectionState extends State<_SignUpUserInfoSection> {
           formKey: formkeys.signUpNameKey,
           errorMessage: 'please enter your name',
         ),
-        Gap(8.h),
+        Gap(16.h),
+
+        // email section
+
         Text(
           AppTexts.email,
-          style: AppTextStyle.styleNormal16(),
+          style: AppTextStyle.textRegular16(),
         ),
         Gap(4.h),
         CustomTextField.withFocusNode(
           onChange: (email) {
             if (formkeys.signUpEmailKey.currentState!.validate()) {
+              signUpUserValidation.emailIsValid = true;
+              signUpUserValidation.signUpUserValidation();
               userInfoModel.setEmail = email;
+            } else {
+              signUpUserValidation.emailIsValid = false;
+              signUpUserValidation.signUpUserValidation();
             }
           },
           hint: AppTexts.emailHint,
@@ -54,16 +70,24 @@ class _SignUpUserInfoSectionState extends State<_SignUpUserInfoSection> {
           formKey: formkeys.signUpEmailKey,
           errorMessage: 'please enter your email',
         ),
-        Gap(8.h),
+        Gap(16.h),
+
+        // password section
+
         Text(
           AppTexts.password,
-          style: AppTextStyle.styleNormal16(),
+          style: AppTextStyle.textRegular16(),
         ),
         Gap(4.h),
         PasswordTextField(
           onChange: (pass) {
             if (formkeys.signUpPassKey.currentState!.validate()) {
+              signUpUserValidation.passsIsValid = true;
+              signUpUserValidation.signUpUserValidation();
               userInfoModel.setpass = pass;
+            } else {
+              signUpUserValidation.passsIsValid = false;
+              signUpUserValidation.signUpUserValidation();
             }
           },
           passFoucNode: _passwordFocuseNode,

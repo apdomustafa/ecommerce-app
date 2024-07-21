@@ -24,6 +24,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   FocusNode? passFoucNode;
   Function1? onChange;
   GlobalKey<FormState>? formKey;
+  bool? hasError;
 
   @override
   void initState() {
@@ -43,37 +44,59 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         focusNode: passFoucNode,
         validator: (value) {
           if (value!.isEmpty) {
+            setState(() {
+              hasError = true;
+            });
             return 'please enter password';
           } else if (value.length < 6) {
+            setState(() {
+              hasError = true;
+            });
             return 'please enter password more than 5 characters';
+          } else {
+            setState(() {
+              hasError = false;
+            });
           }
           return null;
         },
         decoration: InputDecoration(
-          contentPadding:
-              EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-          hintText: '*********',
-          hintStyle: AppTextStyle.styleHintText(),
-          suffixIcon: IconButton(
-              onPressed: () {
-                setState(() {
-                  isObscure = !isObscure;
-                });
-              },
-              icon: isObscure
-                  ? const Icon(Icons.visibility_off)
-                  : const Icon(Icons.visibility)),
-          enabledBorder: outLineBorder(AppColors.tertiryColor),
-          focusedBorder: outLineBorder(AppColors.primaryColor),
-          errorBorder: outLineBorder(AppColors.errorColor),
-        ),
+            contentPadding:
+                EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+            hintText: 'Enter your password',
+            hintStyle: AppTextStyle.generalRegular16(),
+            suffixIcon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    isObscure = !isObscure;
+                  });
+                },
+                icon: isObscure
+                    ? Icon(
+                        Icons.visibility_off,
+                        color: hasError == false
+                            ? Colors.green
+                            : AppColors.color400,
+                      )
+                    : Icon(
+                        Icons.visibility,
+                        color: hasError == false
+                            ? Colors.green
+                            : AppColors.color400,
+                      )),
+            enabledBorder: outLineBorder(
+                hasError == false ? Colors.green : AppColors.color100),
+            focusedBorder: outLineBorder(
+                hasError == false ? Colors.green : AppColors.color100),
+            errorBorder: outLineBorder(AppColors.errorColor),
+            focusedErrorBorder: outLineBorder(AppColors.errorColor)),
       ),
     );
   }
 
   OutlineInputBorder outLineBorder(Color color) {
     return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(32.r),
+        borderRadius: BorderRadius.circular(10.r),
         borderSide: BorderSide(
           color: color,
         ));

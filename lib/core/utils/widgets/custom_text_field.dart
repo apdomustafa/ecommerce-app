@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/utils/widgets/custom_suffiex_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -5,16 +6,15 @@ import '../colors/app_colors.dart';
 import '../const/type_def.dart';
 import '../thems/text_style.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   final String hint;
   final Function1? onChange;
   final bool isObscure;
-  final Widget? suffixIcon = null;
-  final Widget? preffixIcon = null;
   final FocusNode? srcFocuseNode, desFocusNode;
   final TextEditingController? controller;
   final GlobalKey<FormState>? interanlFormkey;
   final String? interanlErrorMessage;
+  final Color borderColor;
 
   const CustomTextField._internal({
     required this.hint,
@@ -25,6 +25,7 @@ class CustomTextField extends StatelessWidget {
     this.desFocusNode,
     this.interanlFormkey,
     this.interanlErrorMessage,
+    required this.borderColor,
   });
 
   factory CustomTextField.primary(
@@ -36,6 +37,7 @@ class CustomTextField extends StatelessWidget {
       onChange: onComplate,
       controller: controller,
       isObscure: false,
+      borderColor: AppColors.color100,
     );
   }
   factory CustomTextField.withFocusNode({
@@ -54,47 +56,68 @@ class CustomTextField extends StatelessWidget {
       desFocusNode: destinationFocusNode,
       interanlFormkey: formKey,
       interanlErrorMessage: errorMessage,
+      borderColor: AppColors.color100,
     );
   }
 
   @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  final Widget? suffixIcon = null;
+  final Widget? preffixIcon = null;
+  bool? hasError;
+  @override
   Widget build(BuildContext context) {
     return Form(
-      key: interanlFormkey,
+      key: widget.interanlFormkey,
       child: TextFormField(
-        focusNode: srcFocuseNode,
-        controller: controller,
-        onChanged: onChange,
-        onEditingComplete: desFocusNode != null
-            ? () => FocusScope.of(context).requestFocus(desFocusNode)
+        focusNode: widget.srcFocuseNode,
+        controller: widget.controller,
+        onChanged: widget.onChange,
+        onEditingComplete: widget.desFocusNode != null
+            ? () => FocusScope.of(context).requestFocus(widget.desFocusNode)
             : null,
         validator: (value) {
           if (value != null) {
             if (value.isEmpty) {
-              return interanlErrorMessage;
+              setState(() {
+                hasError = true;
+              });
+              return widget.interanlErrorMessage;
+            } else {
+              setState(() {
+                hasError = false;
+              });
             }
           }
           return null;
         },
-        textInputAction:
-            desFocusNode == null ? TextInputAction.done : TextInputAction.next,
+        textInputAction: widget.desFocusNode == null
+            ? TextInputAction.done
+            : TextInputAction.next,
         decoration: InputDecoration(
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          hintText: hint,
-          hintStyle: AppTextStyle.styleHintText(),
-          suffixIcon: suffixIcon,
-          enabledBorder: outLineBorder(AppColors.tertiryColor),
-          focusedBorder: outLineBorder(AppColors.primaryColor),
-          errorBorder: outLineBorder(AppColors.errorColor),
-        ),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            hintText: widget.hint,
+            hintStyle: AppTextStyle.generalRegular16(),
+            suffixIcon: TextFieldSuffixIcon(
+              hasError: hasError,
+            ),
+            enabledBorder: outLineBorder(
+                hasError == false ? Colors.green : widget.borderColor),
+            focusedBorder: outLineBorder(
+                hasError == false ? Colors.green : widget.borderColor),
+            errorBorder: outLineBorder(AppColors.errorColor),
+            focusedErrorBorder: outLineBorder(AppColors.errorColor)),
       ),
     );
   }
 
   OutlineInputBorder outLineBorder(Color color) {
     return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(32),
+        borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(
           color: color,
         ));

@@ -16,51 +16,55 @@ class _SignInUserInfoSectionState extends State<_SignInUserInfoSection> {
   Widget build(BuildContext context) {
     final userInfo = Provider.of<UserInfoModel>(context, listen: false);
     final formkeys = Provider.of<AuthGlobalKeys>(context, listen: false);
+    final signInUserValidation = Provider.of<AuthUserValidation>(
+      context,
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           AppTexts.email,
-          style: AppTextStyle.styleNormal16(),
+          style: AppTextStyle.textRegular16(),
         ),
         Gap(4.h),
         CustomTextField.withFocusNode(
-          hint: AppTexts.nameHint,
+          hint: AppTexts.emailHint,
           sourceFocusNode: _emailFocusNode,
           destinationFocusNode: _passFocusNode,
           onChange: (String email) {
             if (formkeys.signInEmailKey.currentState!.validate()) {
+              signInUserValidation.emailIsValid = true;
+              signInUserValidation.signInUserValidation();
               userInfo.setEmail = email;
+            } else {
+              signInUserValidation.emailIsValid = false;
+              signInUserValidation.signInUserValidation();
             }
           },
           formKey: formkeys.signInEmailKey,
-          errorMessage: 'please enter your name',
+          errorMessage: 'please enter your email',
         ),
+        const Gap(16),
         Text(
           AppTexts.password,
-          style: AppTextStyle.styleNormal16(),
+          style: AppTextStyle.textRegular16(),
         ),
         Gap(4.h),
         PasswordTextField(
           passFoucNode: _passFocusNode,
           onChange: (String pass) {
             if (formkeys.signInPassKey.currentState!.validate()) {
+              signInUserValidation.passsIsValid = true;
+              signInUserValidation.signInUserValidation();
               userInfo.setpass = pass;
+            } else {
+              signInUserValidation.passsIsValid = false;
+              signInUserValidation.signInUserValidation();
             }
           },
           formKey: formkeys.signInPassKey,
         ),
-
-        Gap(4.h),
-        // forgot password
-        Align(
-          alignment: Alignment.centerRight,
-          child: Text(
-            AppTexts.forgotPassword,
-            style: AppTextStyle.styleBold16(),
-          ),
-        )
       ],
     );
   }

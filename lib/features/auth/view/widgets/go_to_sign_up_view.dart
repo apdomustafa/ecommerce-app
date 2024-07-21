@@ -6,20 +6,12 @@ class _GoToSignUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(children: [
-        TextSpan(
-          text: AppTexts.dontHaveAccount,
-          style: AppTextStyle.styleNormal16(),
-        ),
-        TextSpan(
-            text: AppTexts.signUp,
-            style: AppTextStyle.styleBold16(),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                Navigator.pushNamed(context, AppConst.kSignUpView);
-              }),
-      ]),
+    return TextCombination(
+      firstText: AppTexts.dontHaveAccount,
+      secondText: AppTexts.join,
+      onPressed: () {
+        Navigator.pushNamed(context, AppConst.kSignUpView);
+      },
     );
   }
 }

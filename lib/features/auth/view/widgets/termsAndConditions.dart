@@ -11,35 +11,26 @@ class _TermsAndConditionState extends State<_TermsAndCondition> {
   bool isSelected = true;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-            value: isSelected,
-            fillColor: MaterialStateProperty.resolveWith<Color>(
-                (Set<MaterialState> states) {
-              if (states.contains(MaterialState.selected)) {
-                return AppColors
-                    .primaryColor; // Color when checkbox is selected
-              }
-              return Colors.grey; // Color when checkbox is disabled
-            }),
-            onChanged: (value) {
-              setState(() {
-                isSelected = value!;
-              });
-            }),
-        RichText(
-            text: TextSpan(children: [
-          TextSpan(
-            text: AppTexts.agreeWith,
-            style: AppTextStyle.styleNormal20(),
-          ),
-          TextSpan(
-            text: AppTexts.termsAndConditions,
-            style: AppTextStyle.styleBold20(),
-          ),
-        ]))
-      ],
-    );
+    return RichText(
+        text: TextSpan(children: [
+      TextSpan(
+        text: 'By signing up you agree to our Terms, ',
+        style: AppTextStyle.generalRegular14(),
+      ),
+      TextSpan(
+        text: 'Privacy Policy, ',
+        style: AppTextStyle.generalRegular14().copyWith(
+            color: AppColors.color900, decoration: TextDecoration.underline),
+      ),
+      TextSpan(
+        text: 'and ',
+        style: AppTextStyle.generalRegular14(),
+      ),
+      TextSpan(
+        text: 'Cookie Use',
+        style: AppTextStyle.generalRegular14().copyWith(
+            color: AppColors.color900, decoration: TextDecoration.underline),
+      ),
+    ]));
   }
 }

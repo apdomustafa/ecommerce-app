@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/features/auth/view/on_boarding_view.dart';
 import 'package:ecommerce_app/features/auth/view/sign_in_view.dart';
 import 'package:ecommerce_app/features/auth/view/sign_up_view.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (context) => const SignInView());
       case AppConst.kSignUpView:
         return MaterialPageRoute(builder: (context) => const SignUpView());
+      case AppConst.kOnBoardingView:
+        return MaterialPageRoute(builder: (context) => const OnBoardingView());
     }
     return MaterialPageRoute(builder: (context) => const SignInView());
   }

@@ -5,20 +5,11 @@ class _GoToSignInView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(children: [
-        TextSpan(
-          text: AppTexts.alreadryHaveAccount,
-          style: AppTextStyle.styleNormal16(),
-        ),
-        TextSpan(
-            text: AppTexts.signIn,
-            style: AppTextStyle.styleBold16(),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                Navigator.pop(context);
-              }),
-      ]),
-    );
+    return TextCombination(
+        firstText: AppTexts.alreadryHaveAccount,
+        secondText: AppTexts.logIn,
+        onPressed: () {
+          Navigator.pushNamed(context, AppConst.kSignInView);
+        });
   }
 }

@@ -1,21 +1,36 @@
-part of 'package:ecommerce_app/features/auth/view/widgets/social_sign_methods.dart';
+part of 'package:ecommerce_app/features/auth/view/widgets/social_sign_buttons.dart';
 
 class _SocialButton extends StatelessWidget {
-  const _SocialButton({required this.image});
-  final String image;
+  const _SocialButton(
+      {required this.image,
+      required this.text,
+      required this.textColor,
+      required this.backgroundColor});
+  final String image, text;
+  final Color textColor, backgroundColor;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 62.w,
-      height: 62.h,
+      padding: EdgeInsets.symmetric(vertical: 17.h),
       decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: AppColors.tertiryColor)),
+          borderRadius: BorderRadius.circular(10),
+          color: backgroundColor,
+          border: Border.all(color: AppColors.color200)),
       child: Center(
-        child: Image.asset(
-          image,
-          height: 32.h,
-          width: 32.w,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              image,
+              height: 24,
+              width: 24,
+            ),
+            const Gap(10),
+            Text(
+              text,
+              style: AppTextStyle.generalRegular16().copyWith(color: textColor),
+            )
+          ],
         ),
       ),
     );
